@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const AddCategory = ({ setCategories }) => {
 
     //Necesitamos que input tenga un estado
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(''); //Lo dejamos como un string vacio; porque sino quedaria como undefined si lo dejamos vacio
     const handleInputChange = (e) => {
         //console.log(e.target.value);
         setInputValue(e.target.value)
