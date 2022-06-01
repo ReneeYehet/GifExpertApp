@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { GifGridItem } from './GifGridItem';
 
-//useEffect permite poder ejecutar codigo de manera condicional
+
 
 export const GifGrid = ({category}) => {
+    const [images, setimages] = useState([]);
 
-    const [ count, setCount ] = useState(0);
-
-    //Lo que significa que usando useEffect hace que este componente solo sea renderizado por primera vez
     useEffect( () => {
         getGifs();
     }, []); //[Lista de dependencias] -> si la dejamos vacia, useEffect solo se va ejecutar una vez
@@ -24,14 +23,21 @@ export const GifGrid = ({category}) => {
             }
         })
 
-        console.log(gifs);
+        //console.log(gifs);
+        setimages(gifs);
     }
 
     return (
         <div>
             <h3>{category}</h3>
-            <h4>{count}</h4>
-            <button onClick={() => setCount(count+1)}></button>
+            
+            {
+                images.map( img => (
+                    <GifGridItem  
+                        {...img} //esto para pasarlo como desestructurado
+                        key={img.id}/>
+                ))
+            }
         </div>
     )
 }
